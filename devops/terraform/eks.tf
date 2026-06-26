@@ -10,7 +10,7 @@ module "eks" {
 
   enable_irsa = true # creates the OIDC provider — required for IRSA later
 
-  cluster_endpoint_public_access  = true # we'll flip this to false once the bastion exists
+  cluster_endpoint_public_access  = false # we'll flip this to false once the bastion exists
   cluster_endpoint_private_access = true
 
   eks_managed_node_groups = {

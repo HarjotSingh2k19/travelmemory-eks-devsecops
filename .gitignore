@@ -141,3 +141,4 @@ terraform.tfvars
 
 tfplan
 tfplan
+devops/ansible/inventory.ini

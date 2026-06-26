@@ -1,0 +1,66 @@
+---
+- name: Configure bastion host
+  hosts: bastion
+  become: true
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install base packages
+      apt:
+        name:
+          - unzip
+          - curl
+        state: present
+
+    - name: Check if AWS CLI is already installed
+      stat:
+        path: /usr/local/bin/aws
+      register: aws_cli_check
+
+    - name: Download AWS CLI v2 installer
+      get_url:
+        url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        dest: /tmp/awscliv2.zip
+      when: not aws_cli_check.stat.exists
+
+    - name: Unzip AWS CLI installer
+      unarchive:
+        src: /tmp/awscliv2.zip
+        dest: /tmp
+        remote_src: true
+      when: not aws_cli_check.stat.exists
+
+    - name: Install AWS CLI
+      command: /tmp/aws/install
+      when: not aws_cli_check.stat.exists
+
+    - name: Install kubectl
+      get_url:
+        url: "https://dl.k8s.io/release/v1.31.0/bin/linux/amd64/kubectl"
+        dest: /usr/local/bin/kubectl
+        mode: '0755'
+      
+    - name: Install Helm
+      shell: curl -s https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+      args:
+        creates: /usr/local/bin/helm
+
+    - name: Verify AWS CLI version
+      command: aws --version
+      register: aws_version
+      changed_when: false
+
+    - name: Verify kubectl version
+      command: kubectl version --client
+      register: kubectl_version
+      changed_when: false
+
+    - name: Display installed versions
+      debug:
+        msg:
+          - "{{ aws_version.stdout }}"
+          - "{{ kubectl_version.stdout_lines }}"
