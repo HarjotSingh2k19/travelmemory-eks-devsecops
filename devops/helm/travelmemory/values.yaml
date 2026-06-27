@@ -1,0 +1,18 @@
+backend:
+  image:
+    repository: 446056240219.dkr.ecr.ap-south-1.amazonaws.com/travelmemory-backend
+    tag: "v2"
+  replicaCount: 2
+  port: 3000
+
+frontend:
+  image:
+    repository: 446056240219.dkr.ecr.ap-south-1.amazonaws.com/travelmemory-frontend
+    tag: "v2"
+  replicaCount: 2
+  port: 80
+
+docdb:
+  configMapName: docdb-ca-cert
+  # NOTE: mongoUri is intentionally NOT here — plaintext creds in values.yaml would get committed to git.
+  # Phase 6 replaces this with a real Secret/Secrets-Manager-backed value. For now, set via --set at install time.
