@@ -10,7 +10,9 @@ spec:
     metadata:
       labels: { app: backend }
     spec:
-      serviceAccountName: backend-sa
+      # it is making sure that only backend pods will have access to service account(sa)
+      # and service account has required role from irsa.tf(aws_iam_role) and hence now passed to backend pods
+      serviceAccountName: backend-sa    
       containers:
         - name: backend
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
