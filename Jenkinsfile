@@ -46,7 +46,13 @@ spec:
         stage('2 - Unit Tests') {
             steps {
                 container('node') {
-                    sh 'cd backend && npm ci && npm test'
+                    sh '''
+                    cd backend
+                    echo "MONGO_URI=mongodb://localhost:27017/test" > .env
+                    echo "PORT=3000" >> .env
+                    npm ci
+                    npm test
+                '''
                 }
             }
         }

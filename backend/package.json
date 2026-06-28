@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --forceExit"
   },
   "author": "Prashant Dey",
   "license": "ISC",
@@ -14,5 +14,9 @@
     "express": "^4.18.2",
     "mongoose": "^7.2.4",
     "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.2.2"
   }
 }
