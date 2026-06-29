@@ -116,7 +116,8 @@ spec:
         }
         stage('8 - Update GitOps Repo') {
             steps {
-                sh '''
+                withCredentials([usernamePassword(credentialsId: 'github-pat', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PAT')]) {
+                    sh '''
                     git clone https://${GIT_USER}:${GIT_PAT}@github.com/HarjotSingh2k19/travelmemory-eks-devsecops-gitops.git
                     cd travelmemory-eks-devsecops-gitops
                     sed -i "s/tag:.*/tag: \\"${IMAGE_TAG}\\"/g" helm/values.yaml
@@ -125,6 +126,7 @@ spec:
                     git commit -am "ci: bump image tag to ${IMAGE_TAG} [skip ci]"
                     git push
                 '''
+                }
             }
         }
     }

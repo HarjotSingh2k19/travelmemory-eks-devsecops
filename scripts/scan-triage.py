@@ -9,7 +9,7 @@ def load_json(path):
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"WARNING: could not load {path}: {e}")
-        return None
+        sys.exit(1)
 
 def main():
     if len(sys.argv) != 4:
