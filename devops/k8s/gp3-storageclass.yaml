@@ -1,0 +1,20 @@
+# Connecting EBS volume(PV) to our 'jenkins in kubernetes(EKS)' 
+
+# When Jenkins first started, it got stuck in Pending. This is because Kubernetes didn't know how to create the "real" hard drive (EBS volume) that the Jenkins disk (PVC) needed.
+
+#The Problem: EKS doesn't have an "EBS driver" built-in by default.
+
+# The Fix: You used Terraform to add the aws-ebs-csi-driver as an EKS Add-on and created a StorageClass (gp3).
+
+# Why gp3? It's the modern, cheaper, and faster version of AWS storage. Once the driver was installed, Kubernetes saw the instruction and automatically bound a physical AWS disk to Jenkins.
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gp3
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  type: gp3
