@@ -107,10 +107,12 @@ spec:
         stage('7 - AI Triage Gate') {
             steps {
                 container('python') {
-                    sh '''
-                        pip install --quiet anthropic requests
+                    withCredentials([string(credentialsId: 'gemini-api-key', variable: 'GEMINI_API_KEY')]) {
+                        sh '''
+                        pip install --quiet requests
                         python3 scripts/scan-triage.py trivy-backend.json checkov-report.json gitleaks-report.json
                     '''
+                    }
                 }
             }
         }
