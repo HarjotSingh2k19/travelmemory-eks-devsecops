@@ -82,14 +82,12 @@ spec:
                         /kaniko/executor \
                           --context=`pwd`/backend \
                           --dockerfile=`pwd`/backend/Dockerfile \
-                          --destination=${ECR_REGISTRY}/travelmemory-backend:${IMAGE_TAG} \
-                          --destination=${ECR_REGISTRY}/travelmemory-backend:latest
+                          --destination=${ECR_REGISTRY}/travelmemory-backend:${IMAGE_TAG} 
 
                         /kaniko/executor \
                           --context=`pwd`/frontend \
                           --dockerfile=`pwd`/frontend/Dockerfile \
-                          --destination=${ECR_REGISTRY}/travelmemory-frontend:${IMAGE_TAG} \
-                          --destination=${ECR_REGISTRY}/travelmemory-frontend:latest
+                          --destination=${ECR_REGISTRY}/travelmemory-frontend:${IMAGE_TAG} 
                     '''
                 }
             }
