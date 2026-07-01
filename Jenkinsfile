@@ -128,11 +128,18 @@ spec:
                     sh '''
                     git clone https://${GIT_USER}:${GIT_PAT}@github.com/HarjotSingh2k19/travelmemory-eks-devsecops-gitops.git
                     cd travelmemory-eks-devsecops-gitops
-                    sed -i "s/tag:.*/tag: \\"${IMAGE_TAG}\\"/g" helm/values.yaml
-                    git config user.email "jenkins@travelmemory.local"
+
+                    # UPDATE THIS LINE TO THE NEW PATH
+                    sed -i "s/tag:.*/tag: \\"${BUILD_NUMBER}\\"/g" devops/helm/travelmemory/values.yaml
+                    
+                    git config user.email "jenkins@example.com"
                     git config user.name "Jenkins CI"
-                    git commit -am "ci: bump image tag to ${IMAGE_TAG} [skip ci]"
-                    git push
+                    
+                    # UPDATE THIS LINE TO THE NEW PATH
+                    git add devops/helm/travelmemory/values.yaml
+                    
+                    git commit -m "ci: update image tag to ${BUILD_NUMBER}"
+                    git push origin main
                 '''
                 }
             }
