@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: backend-sa
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::446056240219:role/eks-pipeline-backend-irsa  # connects to irsa.tf (role defined there)

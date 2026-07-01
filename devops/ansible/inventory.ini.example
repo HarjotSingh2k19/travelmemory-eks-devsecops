@@ -1,2 +1,0 @@
-[bastion]
-bastion-host ansible_host=BASTION_PUBLIC_IP
