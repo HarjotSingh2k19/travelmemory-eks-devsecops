@@ -70,7 +70,15 @@ spec:
             steps {
                 container('checkov') {
                     sh '''
-                        checkov -d devops/terraform --output json --output-file-path console > checkov-report.json || true
+                    echo "Cloning GitOps repo to scan infrastructure..."
+                    git clone https://github.com/HarjotSingh2k19/travelmemory-eks-devsecops-gitops.git temp-gitops-repo
+                    
+                    echo "Running Checkov..."
+                    # Run scan on the cloned repo and output to checkov-report.json
+                    checkov -d temp-gitops-repo/devops/terraform --output json > checkov-report.json || true
+                    
+                    echo "Cleaning up..."
+                    rm -rf temp-gitops-repo
                     '''
                 }
             }
