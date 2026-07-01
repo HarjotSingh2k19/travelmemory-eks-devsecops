@@ -49,4 +49,4 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: docdb-mongo-uri
+              secretProviderClass: docdb-mongo-uri # Points to your SecretProviderClass
