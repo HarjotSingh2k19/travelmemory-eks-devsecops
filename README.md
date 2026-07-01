@@ -47,3 +47,5 @@ cd frontend
 npm install
 npm start
 ```
+
+Lets test the app
