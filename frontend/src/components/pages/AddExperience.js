@@ -20,7 +20,7 @@ export default function AddExperience() {
     const submitForm = () => {
         setLoading(true);
         console.log(formdata)
-        axios.post(`${baseUrl}/trip`, formdata)
+        axios.post(`${baseUrl}/api/trip`, formdata)
         setLoading(false)
     }
 

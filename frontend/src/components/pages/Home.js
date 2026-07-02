@@ -7,7 +7,7 @@ import { baseUrl } from "../../url";
 export default function Home() {
   const [data, setData] = useState();
   useEffect(() => {
-    axios.get(`${baseUrl}/trip/`).then((res) => setData(res.data));
+    axios.get(`${baseUrl}/api/trip/`).then((res) => setData(res.data));
   }, []);
   if (data) {
     return (

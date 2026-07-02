@@ -8,7 +8,7 @@ export default function ExperienceDetails(props) {
   const [data, setData] = useState()
 
   useEffect(()=>{
-    axios.get(`${baseUrl}/trip/${id}`)
+    axios.get(`${baseUrl}/api/trip/${id}`)
     .then((res) => {
       console.log(res.data)
       setData(res.data)
