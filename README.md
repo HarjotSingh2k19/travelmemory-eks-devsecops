@@ -48,4 +48,4 @@ npm install
 npm start
 ```
 
-Lets test the end to end app
+Lets test end to end app
