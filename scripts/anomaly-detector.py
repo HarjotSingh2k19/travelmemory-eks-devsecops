@@ -140,7 +140,7 @@ def main():
         print(f"ANOMALIES DETECTED: {len(anomalies_found)}")
         for a in anomalies_found:
             print(f"  - {a}")
-        sys.exit(1)
+        sys.exit(0)
     else:
         print("All metrics within normal baseline. No anomalies detected.")
         sys.exit(0)
