@@ -93,7 +93,7 @@ flowchart LR
 
 ---
 
-## 📁 Repository structure (verified)
+## 📁 Repository structure
 
 ```text
 travelmemory-eks-devsecops/
