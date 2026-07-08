@@ -52,7 +52,7 @@ Throughout this guide, replace `<YOUR_AWS_ACCOUNT_ID>` with your own 12-digit AW
 
 ---
 
-## 🏗️ Where this fits in the bigger picture
+## 🏗️ Architecture
 
 ```mermaid
 flowchart LR
